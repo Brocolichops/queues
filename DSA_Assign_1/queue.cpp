@@ -22,11 +22,27 @@ void initQueue() {
 	head = tail = NULL;
 }
 
-bool checkEmpty(struct node* head) {
+bool checkEmpty(struct Node* head) {
 	return (head == NULL);
 }
 
+void enqueue(struct Node* head, struct User data) {
+	struct Node* newNode = (Node*)malloc(sizeof(struct Node));
 
+	if (newNode == NULL) {
+		cout << "Memory allocation failed" << endl;
+		return;
+	}
+
+	newNode->data = data;
+
+	if (head == NULL) {
+		head = newNode;
+	}
+	newNode->next = NULL;
+	tail->next = newNode;
+	tail = newNode;
+}
 
 int main(void) {
 
