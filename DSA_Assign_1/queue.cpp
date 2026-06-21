@@ -1,5 +1,5 @@
 #include <iostream>
-#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 struct User {
@@ -21,7 +21,7 @@ void initQueue() {
 	head = tail = NULL;
 }
 
-bool checkEmpty(struct Node* head) {
+bool checkEmpty() {
 	return (head == NULL);
 }
 
@@ -42,7 +42,7 @@ void enqueue(struct Node*& head, struct User data) {
 }
 
 void dequeue(struct Node*& head) {
-	if (checkEmpty(head)) {
+	if (checkEmpty()) {
 		cout << "No nodes to dequeue!" << endl;
 		return;
 	}
@@ -55,7 +55,7 @@ void dequeue(struct Node*& head) {
 	return;
 }
 
-void populateQueue(struct Node*& head) {
+int populateQueue(struct Node*& head) {
 	cout << "How many users would you like to queue?: " << endl;
 	int users;
 	cin >> users;
@@ -87,6 +87,7 @@ void populateQueue(struct Node*& head) {
 			break;
 		default:
 			cout << "Switch failed!" << endl;
+			return 1;
 		}
 		User user;
 		user.username = username;
@@ -94,12 +95,24 @@ void populateQueue(struct Node*& head) {
 		user.faction = faction;
 		enqueue(head, user);
 	}
+	return 0;
+
 }
 
 int main(void) {
 
 	srand(time(NULL));
+	initQueue();
+	populateQueue(head);
 
+	while (head != NULL) {
+		cout << "--------------" << endl;
+		cout << "Username: " << head->data.username << endl;
+		cout << "Faction: " << head->data.faction << endl;
+		cout << "Level: " << head->data.level << endl;
+		cout << "--------------" << endl;
+		dequeue(head);
+	}
 
 	return 0;
 }
