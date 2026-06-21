@@ -22,6 +22,10 @@ void initQueue() {
 	head = tail = NULL;
 }
 
+bool checkEmpty(struct node* head) {
+	return (head == NULL);
+}
+
 
 
 int main(void) {
