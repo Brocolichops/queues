@@ -11,15 +11,18 @@ struct User {
 struct Node {
 
 	struct User data;
-
+	struct Node* next;
 };
 
-struct Queue {
+static struct Node* head;
+static struct Node* tail;
 
-	struct Node head;
-	struct Node tail;
 
-};
+void initQueue() {
+	head = tail = NULL;
+}
+
+
 
 int main(void) {
 
